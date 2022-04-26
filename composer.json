@@ -1,24 +1,33 @@
 {
-    "name": "traineratwot/cache",
-    "type": "project",
-    "license": "MIT",
-    "authors"          :[
-        {
-            "name" :"Kirill",
-            "email":"Traineratwot@yandex.ru"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Traineratwot\\Cache\\": "src/"
-        }
-    },
-    "minimum-stability": "stable",
-    "require"          :{
-        "php": ">=5.6"
-    },
-    "require-dev"      :{
-        "roave/security-advisories":"dev-latest",
-        "jetbrains/phpstorm-attributes":"dev-master"
-    }
+	"name"             :"traineratwot/cache",
+	"type"             :"project",
+	"version"          :"1.0.0",
+    "description"      :"simple cache system",
+	"license"          :"MIT",
+    "readme"           :"./README.md",
+    "homepage"         :"https://github.com/traineratwot/cache",
+	"authors"          :[
+		{
+			"name" :"Kirill",
+			"email":"Traineratwot@yandex.ru"
+		}
+	],
+	"autoload"         :{
+		"psr-4":{
+			"Traineratwot\\Cache\\":"src/"
+		}
+	},
+	"minimum-stability":"stable",
+	"require"          :{
+		"php":">=5.6"
+	},
+	"require-dev"      :{
+		"roave/security-advisories"    :"dev-latest",
+		"jetbrains/phpstorm-attributes":"dev-master"
+	},
+	"keywords"         :[
+		"PSR-4",
+		"simple",
+		"cache"
+	]
 }
