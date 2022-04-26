@@ -2,6 +2,12 @@
 
 define const `WT_CACHE_PATH` for set cache folder. without `WT_CACHE_PATH` save to vendor directory
 
+**install**
+
+```
+composer require traineratwot/cache
+```
+
 Example:
 
 ```php
