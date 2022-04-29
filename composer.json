@@ -1,13 +1,13 @@
 {
 	"name"             :"traineratwot/cache",
 	"type"             :"library",
-	"version"          :"1.0.1",
+	"version"          :"1.0.2",
     "description"      :"simple cache system",
 	"license"          :"MIT",
     "readme"           :"./README.md",
     "homepage"         :"https://github.com/traineratwot/cache",
 	"scripts"          :{
-		"up:release": "gh release create \"1.0.1\" --generate-notes"
+		"up:release": "gh release create \"1.0.2\" --generate-notes"
 	},
 	"authors"          :[
 		{
