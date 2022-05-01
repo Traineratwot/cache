@@ -14,7 +14,6 @@
 
 	/**
 	 * Класс для Кеша
-	 *
 	 * [github.com](https://github.com/Traineratwot/cache)
 	 */
 	class Cache
