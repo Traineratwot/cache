@@ -7,10 +7,7 @@
 	use RecursiveIteratorIterator;
 	use RuntimeException;
 	use SplFileInfo;
-
-	if (!defined('WT_CACHE_PATH')) {
-		define('WT_CACHE_PATH', dirname(__DIR__) . '/cache/');
-	}
+	use Traineratwot\cc\Config;
 
 	/**
 	 * Класс для Кеша
@@ -64,8 +61,8 @@
 				}
 			}
 			$name = self::getKey($key) . '.cache.php';
-			if (file_exists(WT_CACHE_PATH . $category . DIRECTORY_SEPARATOR . $name)) {
-				return include WT_CACHE_PATH . $category . DIRECTORY_SEPARATOR . $name;
+			if (file_exists(Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR . $name)) {
+				return include Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR . $name;
 			}
 			return NULL;
 		}
@@ -103,7 +100,7 @@
 	return $v
 ?>
 PHP;
-			$concurrentDirectory = WT_CACHE_PATH . $category . DIRECTORY_SEPARATOR;
+			$concurrentDirectory = Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR;
 			if (!file_exists($concurrentDirectory) || !is_dir($concurrentDirectory)) {
 				if (!mkdir($concurrentDirectory, 0777, TRUE) && !is_dir($concurrentDirectory)) {
 					throw new CacheException(sprintf('Directory "%s" was not created', $concurrentDirectory));
@@ -124,10 +121,10 @@ PHP;
 		public static function removeCache($key, $category = '')
 		{
 			$name = self::getKey($key) . '.cache.php';
-			if (file_exists(WT_CACHE_PATH . $category . DIRECTORY_SEPARATOR . $name)) {
-				unlink(WT_CACHE_PATH . $category . DIRECTORY_SEPARATOR . $name);
+			if (file_exists(Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR . $name)) {
+				unlink(Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR . $name);
 			}
-			return !file_exists(WT_CACHE_PATH . $name);
+			return !file_exists(Config::get('CACHE_PATH') . $name);
 		}
 
 		/**
@@ -136,7 +133,7 @@ PHP;
 		 */
 		public static function autoRemove()
 		{
-			$dirs     = new RecursiveDirectoryIterator(WT_CACHE_PATH, FilesystemIterator::SKIP_DOTS);
+			$dirs     = new RecursiveDirectoryIterator(Config::get('CACHE_PATH'), FilesystemIterator::SKIP_DOTS);
 			$Iterator = new RecursiveIteratorIterator($dirs);
 			/** @var SplFileInfo $file */
 			foreach ($Iterator as $file) {
@@ -151,9 +148,12 @@ PHP;
 		 * @param string $dir DON`T SET
 		 * @return void
 		 */
-		public static function removeAll($dir = WT_CACHE_PATH)
+		public static function removeAll($dir = -1)
 		{
-			if (strpos($dir, WT_CACHE_PATH) === FALSE) {
+			if ($dir < 0) {
+				$dir = Config::get('CACHE_PATH');
+			}
+			if (strpos($dir, Config::get('CACHE_PATH')) === FALSE) {
 				throw new RuntimeException();
 			}
 			if ($objs = glob($dir . '/*')) {

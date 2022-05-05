@@ -1,13 +1,13 @@
 {
 	"name"             :"traineratwot/cache",
 	"type"             :"library",
-	"version"          :"1.0.2",
+	"version"          :"2.0.0",
     "description"      :"simple cache system",
 	"license"          :"MIT",
     "readme"           :"./README.md",
     "homepage"         :"https://github.com/traineratwot/cache",
 	"scripts"          :{
-		"up:release": "gh release create \"1.0.2\" --generate-notes"
+		"up:release": "gh release create \"1.0.0\" --generate-notes"
 	},
 	"authors"          :[
 		{
@@ -22,7 +22,9 @@
 	},
 	"minimum-stability":"stable",
 	"require"          :{
-		"php":">=5.6"
+		"php"                         :">=5.6",
+		"traineratwot/composer-config":"dev-master",
+		"phpunit/phpunit": "^9.5"
 	},
 	"require-dev"      :{
 		"roave/security-advisories"    :"dev-latest",
@@ -32,5 +34,18 @@
 		"PSR-4",
 		"simple",
 		"cache"
-	]
+	],
+	"config"           :{
+		"allow-plugins":{
+			"traineratwot/composer-config":true
+		}
+	},
+	"extra"            :{
+		"cc":{
+			"configPath": null,
+			"optional": {
+				"CACHE_PATH": "path to save cache"
+			}
+		}
+	}
 }
