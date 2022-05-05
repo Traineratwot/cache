@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "262580e3819781d883d4fda341baaf34",
+    "content-hash": "e620cb3a557920935963c937ca5a2e62",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -2048,16 +2048,16 @@
         },
         {
             "name": "traineratwot/composer-config",
-            "version": "dev-master",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Traineratwot/composer-config.git",
-                "reference": "5dcdaa569ea974bbf5026cb8735f728e085d6fbc"
+                "reference": "1c8cfd1415e779f741e516cc0d40e053908e119a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Traineratwot/composer-config/zipball/5dcdaa569ea974bbf5026cb8735f728e085d6fbc",
-                "reference": "5dcdaa569ea974bbf5026cb8735f728e085d6fbc",
+                "url": "https://api.github.com/repos/Traineratwot/composer-config/zipball/1c8cfd1415e779f741e516cc0d40e053908e119a",
+                "reference": "1c8cfd1415e779f741e516cc0d40e053908e119a",
                 "shasum": ""
             },
             "require": {
@@ -2071,7 +2071,6 @@
                 "phpunit/phpunit": "^9.5",
                 "roave/security-advisories": "dev-latest"
             },
-            "default-branch": true,
             "type": "composer-plugin",
             "extra": {
                 "class": "Traineratwot\\cc\\Plugin",
@@ -2100,9 +2099,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Traineratwot/composer-config/issues",
-                "source": "https://github.com/Traineratwot/composer-config/tree/master"
+                "source": "https://github.com/Traineratwot/composer-config/tree/1.0.2"
             },
-            "time": "2022-05-05T13:07:26+00:00"
+            "time": "2022-05-05T13:56:29+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -2699,7 +2698,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "traineratwot/composer-config": 20,
         "roave/security-advisories": 20,
         "jetbrains/phpstorm-attributes": 20
     },
