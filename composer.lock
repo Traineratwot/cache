@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e620cb3a557920935963c937ca5a2e62",
+    "content-hash": "b89de2d26900da6c1f77f9511e68fe34",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -2048,16 +2048,16 @@
         },
         {
             "name": "traineratwot/composer-config",
-            "version": "1.0.2",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Traineratwot/composer-config.git",
-                "reference": "1c8cfd1415e779f741e516cc0d40e053908e119a"
+                "reference": "152c9ac560aaefc5ea80b2aff338f484c68822a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Traineratwot/composer-config/zipball/1c8cfd1415e779f741e516cc0d40e053908e119a",
-                "reference": "1c8cfd1415e779f741e516cc0d40e053908e119a",
+                "url": "https://api.github.com/repos/Traineratwot/composer-config/zipball/152c9ac560aaefc5ea80b2aff338f484c68822a4",
+                "reference": "152c9ac560aaefc5ea80b2aff338f484c68822a4",
                 "shasum": ""
             },
             "require": {
@@ -2067,7 +2067,6 @@
             "require-dev": {
                 "composer/composer": "^2.3",
                 "jetbrains/phpstorm-attributes": "dev-master",
-                "phpstan/phpstan": "^1.6",
                 "phpunit/phpunit": "^9.5",
                 "roave/security-advisories": "dev-latest"
             },
@@ -2099,9 +2098,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Traineratwot/composer-config/issues",
-                "source": "https://github.com/Traineratwot/composer-config/tree/1.0.2"
+                "source": "https://github.com/Traineratwot/composer-config/tree/1.0.8"
             },
-            "time": "2022-05-05T13:56:29+00:00"
+            "time": "2022-05-06T11:32:27+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -2212,12 +2211,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "54c08f02765d00fd520897873f163703b08f68f2"
+                "reference": "2658dd564ed1a63989404083d7ccb9cb10e07701"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/54c08f02765d00fd520897873f163703b08f68f2",
-                "reference": "54c08f02765d00fd520897873f163703b08f68f2",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/2658dd564ed1a63989404083d7ccb9cb10e07701",
+                "reference": "2658dd564ed1a63989404083d7ccb9cb10e07701",
                 "shasum": ""
             },
             "conflict": {
@@ -2422,6 +2421,7 @@
                 "mustache/mustache": ">=2,<2.14.1",
                 "namshi/jose": "<2.2",
                 "neoan3-apps/template": "<1.1.1",
+                "neorazorx/facturascripts": "<2022.4",
                 "neos/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.12|>=3.1,<3.1.10|>=3.2,<3.2.13|>=3.3,<3.3.13|>=4,<4.0.6",
                 "neos/form": ">=1.2,<4.3.3|>=5,<5.0.9|>=5.1,<5.1.3",
                 "neos/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4|>=2.3,<2.9.99|>=3,<3.0.20|>=3.1,<3.1.18|>=3.2,<3.2.14|>=3.3,<3.3.23|>=4,<4.0.17|>=4.1,<4.1.16|>=4.2,<4.2.12|>=4.3,<4.3.3",
@@ -2692,7 +2692,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-04T03:31:04+00:00"
+            "time": "2022-05-05T14:08:42+00:00"
         }
     ],
     "aliases": [],

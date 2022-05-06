@@ -1,13 +1,15 @@
 {
+	"$schema": "https://raw.githubusercontent.com/Traineratwot/composer-config/master/composer-config-schema.json",
 	"name"             :"traineratwot/cache",
 	"type"             :"library",
-	"version"          :"2.0.1",
-    "description"      :"simple cache system",
+	"version"          :"2.0.2",
+	"description"      :"simple cache system",
 	"license"          :"MIT",
-    "readme"           :"./README.md",
-    "homepage"         :"https://github.com/traineratwot/cache",
+	"readme"           :"./README.md",
+	"homepage"         :"https://github.com/traineratwot/cache",
 	"scripts"          :{
-		"up:release": "gh release create \"2.0.1\" --generate-notes"
+		"up:release"     :"gh release create \"2.0.2\" --generate-notes",
+		"composer-config":"composer getAllConfigs"
 	},
 	"authors"          :[
 		{
@@ -41,8 +43,7 @@
 		}
 	},
 	"extra"            :{
-		"cc":{
-			"configPath": null,
+		"composer-config":{
 			"optional": {
 				"CACHE_PATH": "path to save cache"
 			}
