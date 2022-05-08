@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b89de2d26900da6c1f77f9511e68fe34",
+    "content-hash": "ee924f829022c8e65f895c1b9f127011",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -2048,20 +2048,20 @@
         },
         {
             "name": "traineratwot/composer-config",
-            "version": "1.0.8",
+            "version": "1.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Traineratwot/composer-config.git",
-                "reference": "152c9ac560aaefc5ea80b2aff338f484c68822a4"
+                "reference": "be9d2470b56630781a6d6480265e3ba664a0221c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Traineratwot/composer-config/zipball/152c9ac560aaefc5ea80b2aff338f484c68822a4",
-                "reference": "152c9ac560aaefc5ea80b2aff338f484c68822a4",
+                "url": "https://api.github.com/repos/Traineratwot/composer-config/zipball/be9d2470b56630781a6d6480265e3ba664a0221c",
+                "reference": "be9d2470b56630781a6d6480265e3ba664a0221c",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^2.3",
+                "composer-plugin-api": "^2.0",
                 "php": ">=7.4"
             },
             "require-dev": {
@@ -2098,9 +2098,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Traineratwot/composer-config/issues",
-                "source": "https://github.com/Traineratwot/composer-config/tree/1.0.8"
+                "source": "https://github.com/Traineratwot/composer-config/tree/1.0.11"
             },
-            "time": "2022-05-06T11:32:27+00:00"
+            "time": "2022-05-08T08:39:40+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -2211,12 +2211,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "2658dd564ed1a63989404083d7ccb9cb10e07701"
+                "reference": "c99945852fb9e9de3bc89c90f24b4c8ef47668fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/2658dd564ed1a63989404083d7ccb9cb10e07701",
-                "reference": "2658dd564ed1a63989404083d7ccb9cb10e07701",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c99945852fb9e9de3bc89c90f24b4c8ef47668fd",
+                "reference": "c99945852fb9e9de3bc89c90f24b4c8ef47668fd",
                 "shasum": ""
             },
             "conflict": {
@@ -2268,8 +2268,9 @@
                 "concrete5/concrete5": "<9",
                 "concrete5/core": "<8.5.7",
                 "contao-components/mediaelement": ">=2.14.2,<2.21.1",
+                "contao/contao": ">=4,<4.4.56|>=4.5,<4.9.18|>=4.10,<4.11.7|>=4.13,<4.13.3",
                 "contao/core": ">=2,<3.5.39",
-                "contao/core-bundle": "<4.9.18|>=4.10,<4.11.7|= 4.10.0",
+                "contao/core-bundle": "<4.9.18|>=4.10,<4.11.7|>=4.13,<4.13.3|= 4.10.0",
                 "contao/listing-bundle": ">=4,<4.4.8",
                 "contao/managed-edition": "<=1.5",
                 "craftcms/cms": "<3.7.29",
@@ -2692,7 +2693,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-05T14:08:42+00:00"
+            "time": "2022-05-06T13:19:01+00:00"
         }
     ],
     "aliases": [],
