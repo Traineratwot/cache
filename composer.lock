@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee924f829022c8e65f895c1b9f127011",
+    "content-hash": "d163d776899b618f4e8043eb3c2b900c",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -2048,16 +2048,16 @@
         },
         {
             "name": "traineratwot/composer-config",
-            "version": "1.0.11",
+            "version": "1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Traineratwot/composer-config.git",
-                "reference": "be9d2470b56630781a6d6480265e3ba664a0221c"
+                "reference": "a2648afa2a1029e3948ea7be547d3c90b51989ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Traineratwot/composer-config/zipball/be9d2470b56630781a6d6480265e3ba664a0221c",
-                "reference": "be9d2470b56630781a6d6480265e3ba664a0221c",
+                "url": "https://api.github.com/repos/Traineratwot/composer-config/zipball/a2648afa2a1029e3948ea7be547d3c90b51989ef",
+                "reference": "a2648afa2a1029e3948ea7be547d3c90b51989ef",
                 "shasum": ""
             },
             "require": {
@@ -2098,9 +2098,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Traineratwot/composer-config/issues",
-                "source": "https://github.com/Traineratwot/composer-config/tree/1.0.11"
+                "source": "https://github.com/Traineratwot/composer-config/tree/1.0.12"
             },
-            "time": "2022-05-08T08:39:40+00:00"
+            "time": "2022-05-08T18:39:31+00:00"
         },
         {
             "name": "webmozart/assert",

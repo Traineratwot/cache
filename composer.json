@@ -9,7 +9,9 @@
 	"homepage"         :"https://github.com/traineratwot/cache",
 	"scripts"          :{
 		"up:release"     :"gh release create \"2.0.3\" --generate-notes",
-		"composer-config":"composer getAllConfigs"
+		"composer-config":"composer getAllConfigs",
+		"composer-config-print": "composer getAllConfigs",
+		"composer-config-update": "composer configUpdate"
 	},
 	"authors"          :[
 		{
