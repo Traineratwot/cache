@@ -151,16 +151,18 @@ PHP;
 		public static function removeAll($dir = -1)
 		{
 			if ($dir < 0) {
-				$dir = Config::get('CACHE_PATH');
+				$dir = (string)Config::get('CACHE_PATH');
 			}
-			if (strpos($dir, Config::get('CACHE_PATH')) === FALSE) {
-				throw new RuntimeException();
-			}
-			if ($objs = glob($dir . '/*')) {
-				foreach ($objs as $obj) {
-					is_dir($obj) ? self::removeAll($obj) : unlink($obj);
+			if ($dir && file_exists($dir)) {
+				if (strpos($dir, Config::get('CACHE_PATH')) === FALSE) {
+					throw new RuntimeException();
 				}
+				if ($objs = glob($dir . '/*')) {
+					foreach ($objs as $obj) {
+						is_dir($obj) ? self::removeAll($obj) : unlink($obj);
+					}
+				}
+				rmdir($dir);
 			}
-			rmdir($dir);
 		}
 	}
