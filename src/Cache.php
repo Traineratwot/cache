@@ -96,8 +96,8 @@
 			$expire              = $expire ? $expire + time() : 0;
 			$body                = <<<PHP
 <?php
-	if($expire){if(time()>$expire){unlink(__FILE__);return null;}}
-	return $v
+	if($expire && time()>$expire){unlink(__FILE__);return null;}
+	return $v;
 ?>
 PHP;
 			$concurrentDirectory = Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR;
