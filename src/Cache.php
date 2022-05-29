@@ -7,7 +7,8 @@
 	use RecursiveIteratorIterator;
 	use RuntimeException;
 	use SplFileInfo;
-	use Traineratwot\cc\Config;
+	use Traineratwot\config\Config;
+
 
 	/**
 	 * Класс для Кеша
@@ -24,7 +25,8 @@
 		 * @param string   $category cache folder eg: category/subcategory
 		 * @param mixed    ...$args  Values passed to the Callback function
 		 * @return mixed|null
-		 * @throws CacheException
+		 * @noinspection PhpDocMissingThrowsInspection
+		 * @noinspection PhpUnhandledExceptionInspection
 		 */
 		public static function call($key, $function, $expire = 600, $category = '', ...$args)
 		{
@@ -87,7 +89,8 @@
 		 * @param int    $expire   Cache lifetime in sec
 		 * @param string $category cache folder eg: category/subcategory
 		 * @return mixed
-		 * @throws CacheException
+		 * @noinspection PhpDocMissingThrowsInspection
+		 * @noinspection PhpUnhandledExceptionInspection
 		 */
 		public static function setCache($key, $value, $expire = 600, $category = '')
 		{
