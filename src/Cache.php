@@ -58,7 +58,7 @@
 			//если установлен заголовок отключить кеш отключаем кеш
 			if (($category !== 'table') && function_exists('getallheaders')) {
 				$headers = getallheaders();
-				if ($headers['Cache-Control'] === 'no-cache') {
+				if (isset($headers['Cache-Control']) && $headers['Cache-Control'] === 'no-cache') {
 					return NULL;
 				}
 			}
