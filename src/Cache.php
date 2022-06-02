@@ -63,8 +63,8 @@
 				}
 			}
 			$name = self::getKey($key) . '.cache.php';
-			if (file_exists(Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR . $name)) {
-				return include Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR . $name;
+			if (file_exists(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name)) {
+				return include Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name;
 			}
 			return NULL;
 		}
@@ -103,7 +103,7 @@
 	return $v;
 ?>
 PHP;
-			$concurrentDirectory = Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR;
+			$concurrentDirectory = Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR;
 			if (!file_exists($concurrentDirectory) || !is_dir($concurrentDirectory)) {
 				if (!mkdir($concurrentDirectory, 0777, TRUE) && !is_dir($concurrentDirectory)) {
 					throw new CacheException(sprintf('Directory "%s" was not created', $concurrentDirectory));
@@ -124,19 +124,19 @@ PHP;
 		public static function removeCache($key, $category = '')
 		{
 			$name = self::getKey($key) . '.cache.php';
-			if (file_exists(Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR . $name)) {
-				unlink(Config::get('CACHE_PATH') . $category . DIRECTORY_SEPARATOR . $name);
+			if (file_exists(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name)) {
+				unlink(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name);
 			}
-			return !file_exists(Config::get('CACHE_PATH') . $name);
+			return !file_exists(Config::get('CACHE_PATH', $category) . $name);
 		}
 
 		/**
 		 * Deletes an outdated cache
 		 * @return void
 		 */
-		public static function autoRemove()
+		public static function autoRemove($category = '')
 		{
-			$dirs     = new RecursiveDirectoryIterator(Config::get('CACHE_PATH'), FilesystemIterator::SKIP_DOTS);
+			$dirs     = new RecursiveDirectoryIterator(Config::get('CACHE_PATH', $category), FilesystemIterator::SKIP_DOTS);
 			$Iterator = new RecursiveIteratorIterator($dirs);
 			/** @var SplFileInfo $file */
 			foreach ($Iterator as $file) {
@@ -154,10 +154,10 @@ PHP;
 		public static function removeAll($dir = -1)
 		{
 			if ($dir < 0) {
-				$dir = (string)Config::get('CACHE_PATH');
+				$dir = (string)Config::get('CACHE_PATH', $category);
 			}
 			if ($dir && file_exists($dir)) {
-				if (strpos($dir, Config::get('CACHE_PATH')) === FALSE) {
+				if (strpos($dir, Config::get('CACHE_PATH', $category)) === FALSE) {
 					throw new RuntimeException();
 				}
 				if ($objs = glob($dir . '/*')) {
