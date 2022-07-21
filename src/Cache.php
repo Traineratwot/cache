@@ -51,12 +51,13 @@
 		 *
 		 * @param mixed  $key      Cache key
 		 * @param string $category cache folder eg: category/subcategory
+		 * @param boolean $BrowserCacheControl if false ignore browser cache control
 		 * @return mixed|null value
 		 */
-		public static function getCache($key, $category = '')
+		public static function getCache($key, $category = '', $BrowserCacheControl = TRUE)
 		{
 			//если установлен заголовок отключить кеш отключаем кеш
-			if (($category !== 'table') && function_exists('getallheaders')) {
+			if ($BrowserCacheControl && function_exists('getallheaders')) {
 				$headers = getallheaders();
 				if (isset($headers['Cache-Control']) && $headers['Cache-Control'] === 'no-cache') {
 					return NULL;
