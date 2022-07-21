@@ -105,13 +105,16 @@
 ?>
 PHP;
 			$concurrentDirectory = Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR;
+			chmod(dirname($concurrentDirectory), 0777);
 			if (!file_exists($concurrentDirectory) || !is_dir($concurrentDirectory)) {
 				if (!mkdir($concurrentDirectory, 0777, TRUE) && !is_dir($concurrentDirectory)) {
 					throw new CacheException(sprintf('Directory "%s" was not created', $concurrentDirectory));
 				}
 			}
 			if (is_dir($concurrentDirectory)) {
+				chmod($concurrentDirectory, 0777);
 				file_put_contents($concurrentDirectory . $name, $body);
+				chmod($concurrentDirectory . $name, 0777);
 			}
 			return $value;
 		}
@@ -126,6 +129,8 @@ PHP;
 		{
 			$name = self::getKey($key) . '.cache.php';
 			if (file_exists(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name)) {
+				chmod(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR, 0777);
+				chmod(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name, 0777);
 				unlink(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name);
 			}
 			return !file_exists(Config::get('CACHE_PATH', $category) . $name);
@@ -142,6 +147,7 @@ PHP;
 			/** @var SplFileInfo $file */
 			foreach ($Iterator as $file) {
 				if (strpos($file->getFilename(), '.cache.php') !== FALSE) {
+					chmod($file->getFilename(), 0777);
 					include $file->getPathname();
 				}
 			}
@@ -163,6 +169,7 @@ PHP;
 				}
 				if ($objs = glob($dir . '/*')) {
 					foreach ($objs as $obj) {
+						chmod($obj, 0777);
 						is_dir($obj) ? self::removeAll($obj) : unlink($obj);
 					}
 				}
