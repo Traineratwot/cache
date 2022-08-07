@@ -20,17 +20,18 @@
 		 * Stores the result of executing the callback function in the cache or returns the already cached value
 		 *
 		 * @param mixed    $key
-		 * @param Callback $function Callback
-		 * @param int      $expire   Cache lifetime in sec
-		 * @param string   $category cache folder eg: category/subcategory
-		 * @param mixed    ...$args  Values passed to the Callback function
+		 * @param Callback $function            Callback
+		 * @param int      $expire              Cache lifetime in sec
+		 * @param string   $category            cache folder eg: category/subcategory
+		 * @param bool     $BrowserCacheControl cache folder eg: category/subcategory
+		 * @param mixed    ...$args             Values passed to the Callback function
 		 * @return mixed|null
 		 * @noinspection PhpDocMissingThrowsInspection
 		 * @noinspection PhpUnhandledExceptionInspection
 		 */
-		public static function call($key, $function, $expire = 600, $category = '', ...$args)
+		public static function call($key, $function, $expire = 600, $category = '', $BrowserCacheControl = TRUE, ...$args)
 		{
-			$result = self::getCache($key, $category);
+			$result = self::getCache($key, $category, $BrowserCacheControl);
 			if ($result !== NULL) {
 				return $result;
 			}
@@ -49,8 +50,8 @@
 		/**
 		 * Returns a value from the cache
 		 *
-		 * @param mixed  $key      Cache key
-		 * @param string $category cache folder eg: category/subcategory
+		 * @param mixed   $key                 Cache key
+		 * @param string  $category            cache folder eg: category/subcategory
 		 * @param boolean $BrowserCacheControl if false ignore browser cache control
 		 * @return mixed|null value
 		 */

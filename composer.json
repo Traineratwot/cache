@@ -2,13 +2,13 @@
 	"$schema": "https://raw.githubusercontent.com/Traineratwot/composer-config/master/composer-config-schema.json",
 	"name"             :"traineratwot/cache",
 	"type"             :"library",
-	"version"          :"2.2.4",
+	"version"          :"2.2.5",
 	"description"      :"simple cache system",
 	"license"          :"MIT",
 	"readme"           :"./README.md",
 	"homepage"         :"https://github.com/traineratwot/cache",
 	"scripts"          :{
-		"up:release"            :"gh release create \"2.2.4\" --generate-notes",
+		"up:release"            :"gh release create \"2.2.5\" --generate-notes",
 		"composer-config-print" :"composer getAllConfigs",
 		"composer-config-update":"composer configUpdate"
 	},
