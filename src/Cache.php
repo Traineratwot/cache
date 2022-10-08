@@ -2,6 +2,7 @@
 
 	namespace Traineratwot\Cache;
 
+	use Exception;
 	use FilesystemIterator;
 	use RecursiveDirectoryIterator;
 	use RecursiveIteratorIterator;
@@ -106,16 +107,16 @@
 ?>
 PHP;
 			$concurrentDirectory = Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR;
-			chmod(dirname($concurrentDirectory), 0777);
+			self::chmod(dirname($concurrentDirectory), 0777);
 			if (!file_exists($concurrentDirectory) || !is_dir($concurrentDirectory)) {
 				if (!mkdir($concurrentDirectory, 0777, TRUE) && !is_dir($concurrentDirectory)) {
 					throw new CacheException(sprintf('Directory "%s" was not created', $concurrentDirectory));
 				}
 			}
 			if (is_dir($concurrentDirectory)) {
-				chmod($concurrentDirectory, 0777);
+				self::chmod($concurrentDirectory, 0777);
 				file_put_contents($concurrentDirectory . $name, $body);
-				chmod($concurrentDirectory . $name, 0777);
+				self::chmod($concurrentDirectory, 0777);
 			}
 			return $value;
 		}
@@ -130,11 +131,20 @@ PHP;
 		{
 			$name = self::getKey($key) . '.cache.php';
 			if (file_exists(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name)) {
-				chmod(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR, 0777);
-				chmod(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name, 0777);
+				self::chmod(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR, 0777);
+				self::chmod(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name, 0777);
 				unlink(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name);
 			}
 			return !file_exists(Config::get('CACHE_PATH', $category) . $name);
+		}
+
+		private static function chmod($filename, $permissions)
+		{
+			try {
+				return chmod($filename, $permissions);
+			} catch (Exception $e) {
+				return FALSE;
+			}
 		}
 
 		/**
@@ -148,7 +158,7 @@ PHP;
 			/** @var SplFileInfo $file */
 			foreach ($Iterator as $file) {
 				if (strpos($file->getFilename(), '.cache.php') !== FALSE) {
-					chmod($file->getFilename(), 0777);
+					self::chmod($file->getFilename(), 0777);
 					include $file->getPathname();
 				}
 			}
@@ -160,7 +170,7 @@ PHP;
 		 * @param string $dir DON`T SET
 		 * @return void
 		 */
-		public static function removeAll($category = null, $dir = -1)
+		public static function removeAll($category = NULL, $dir = -1)
 		{
 			if ($dir < 0) {
 				$dir = (string)Config::get('CACHE_PATH', $category);
@@ -171,7 +181,7 @@ PHP;
 				}
 				if ($objs = glob($dir . '/*')) {
 					foreach ($objs as $obj) {
-						chmod($obj, 0777);
+						self::chmod($obj, 0777);
 						is_dir($obj) ? self::removeAll($category, $obj) : unlink($obj);
 					}
 				}
