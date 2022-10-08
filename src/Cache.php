@@ -156,10 +156,11 @@ PHP;
 
 		/**
 		 * Deletes all cache
+		 * @param string $category
 		 * @param string $dir DON`T SET
 		 * @return void
 		 */
-		public static function removeAll($dir = -1)
+		public static function removeAll($category = null, $dir = -1)
 		{
 			if ($dir < 0) {
 				$dir = (string)Config::get('CACHE_PATH', $category);
@@ -171,7 +172,7 @@ PHP;
 				if ($objs = glob($dir . '/*')) {
 					foreach ($objs as $obj) {
 						chmod($obj, 0777);
-						is_dir($obj) ? self::removeAll($obj) : unlink($obj);
+						is_dir($obj) ? self::removeAll($category, $obj) : unlink($obj);
 					}
 				}
 				rmdir($dir);
