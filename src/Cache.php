@@ -2,8 +2,11 @@
 
 	namespace Traineratwot\Cache;
 
+	use DateInterval;
+	use DateTime;
 	use Exception;
 	use FilesystemIterator;
+	use Psr\SimpleCache\CacheInterface;
 	use RecursiveDirectoryIterator;
 	use RecursiveIteratorIterator;
 	use RuntimeException;
@@ -13,9 +16,9 @@
 
 	/**
 	 * Класс для Кеша
-	 * [github.com](https://github.com/Traineratwot/cache)
+	 * [github.com]( https://github.com/Traineratwot/cache )
 	 */
-	class Cache
+	class Cache implements CacheInterface
 	{
 		/**
 		 * Stores the result of executing the callback function in the cache or returns the already cached value
@@ -95,11 +98,21 @@
 		 * @noinspection PhpDocMissingThrowsInspection
 		 * @noinspection PhpUnhandledExceptionInspection
 		 */
-		public static function setCache($key, $value, $expire = 600, $category = '')
+		public static function setCache($key, $value, DateInterval|int|null $expire = 600, $category = '')
+		: bool
 		{
-			$name                = self::getKey($key) . '.cache.php';
-			$v                   = var_export($value, 1);
-			$expire              = $expire ? $expire + time() : 0;
+			$name     = self::getKey($key) . '.cache.php';
+			$v        = var_export($value, 1);
+			$lifetime = new DateTime();
+
+			if ($expire) {
+				if (is_int($expire)) {
+					$lifetime->modify("+ $expire second");
+				} else {
+					$lifetime->add($expire);
+				}
+			}
+			$expire              = $lifetime->getTimestamp();
 			$body                = <<<PHP
 <?php
 	if($expire && time()>$expire){unlink(__FILE__);return null;}
@@ -118,7 +131,7 @@ PHP;
 				file_put_contents($concurrentDirectory . $name, $body);
 				self::chmod($concurrentDirectory, 0777);
 			}
-			return $value;
+			return TRUE;
 		}
 
 		/**
@@ -157,9 +170,12 @@ PHP;
 			$Iterator = new RecursiveIteratorIterator($dirs);
 			/** @var SplFileInfo $file */
 			foreach ($Iterator as $file) {
-				if (strpos($file->getFilename(), '.cache.php') !== FALSE) {
-					self::chmod($file->getFilename(), 0777);
-					include $file->getPathname();
+				try {
+					if (file_exists($file->getFilename()) && strpos($file->getFilename(), '.cache.php') !== FALSE && self::chmod($file->getFilename(), 0777)) {
+						include $file->getPathname();
+					}
+				} catch (Exception $e) {
+
 				}
 			}
 		}
@@ -187,5 +203,98 @@ PHP;
 				}
 				rmdir($dir);
 			}
+		}
+
+		public function clear()
+		: bool
+		{
+			self::autoRemove();
+			return TRUE;
+		}
+
+		public function get(string $key, mixed $default = NULL)
+		: mixed
+		{
+			$category = '';
+			if (strpos($key, '/') !== FALSE) {
+				$category = dirname($key);
+				$key      = basename($key);
+			}
+			return self::getCache($key, $category) ?: $default;
+		}
+
+		public function getMultiple(iterable $keys, mixed $default = NULL)
+		: iterable
+		{
+			$result = [];
+			foreach ($keys as $key) {
+				$result[] = $this->get($key, $default);
+			}
+			return $result;
+		}
+
+		/**
+		 * @throws CacheException
+		 */
+		public function set(string $key, mixed $value, DateInterval|int|null $ttl = NULL)
+		: bool
+		{
+			$category = '';
+			if (strpos($key, '/') !== FALSE) {
+				$category = dirname($key);
+				$key      = basename($key);
+			}
+			return self::setCache($key, $category, $ttl);
+		}
+
+		/**
+		 * @throws CacheException
+		 */
+		public function setMultiple(iterable $values, DateInterval|int|null $ttl = NULL)
+		: bool
+		{
+			foreach ($values as $key => $value) {
+				if (!$this->set($key, $value)) {
+					return FALSE;
+				}
+			}
+			return TRUE;
+		}
+
+		public function delete(string $key)
+		: bool
+		{
+			$category = '';
+			if (strpos($key, '/') !== FALSE) {
+				$category = dirname($key);
+				$key      = basename($key);
+			}
+			self::removeCache($key);
+			return TRUE;
+		}
+
+		public function deleteMultiple(iterable $keys)
+		: bool
+		{
+			foreach ($keys as $key) {
+				$this->delete($key);
+			}
+			return TRUE;
+		}
+
+		public function has(string $key)
+		: bool
+		{
+			$name = self::getKey($key) . '.cache.php';
+			return file_exists(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name);
+		}
+
+		public static function getCacheFile($key, $category = '')
+		{
+			$name = self::getKey($key) . '.cache.php';
+			if (file_exists(Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name)) {
+				return Config::get('CACHE_PATH', $category) . $category . DIRECTORY_SEPARATOR . $name;
+			}
+			return NULL;
 		}
 	}
