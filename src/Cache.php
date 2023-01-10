@@ -44,7 +44,8 @@
 				$args   = array_slice($args, 4);
 				$result = $function(...$args);
 				if ($result !== NULL) {
-					return self::setCache($key, $result, $expire, $category);
+					self::setCache($key, $result, $expire, $category);
+					return $result;
 				}
 				return NULL;
 			}
