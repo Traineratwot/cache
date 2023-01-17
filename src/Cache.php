@@ -102,18 +102,19 @@
 		public static function setCache($key, $value, DateInterval|int|null $expire = 600, $category = '')
 		: bool
 		{
-			$name     = self::getKey($key) . '.cache.php';
-			$v        = var_export($value, 1);
-			$lifetime = new DateTime();
-
-			if ($expire) {
-				if (is_int($expire)) {
-					$lifetime->modify("+ $expire second");
-				} else {
-					$lifetime->add($expire);
+			$name = self::getKey($key) . '.cache.php';
+			$v    = var_export($value, 1);
+			if ($expire !== 0) {
+				$lifetime = new DateTime();
+				if ($expire) {
+					if (is_int($expire)) {
+						$lifetime->modify("+ $expire second");
+					} else {
+						$lifetime->add($expire);
+					}
 				}
+				$expire = $lifetime->getTimestamp();
 			}
-			$expire              = $lifetime->getTimestamp();
 			$body                = <<<PHP
 <?php
 	if($expire && time()>$expire){unlink(__FILE__);return null;}
